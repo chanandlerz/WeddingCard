@@ -54,17 +54,26 @@ export const event = {
   coupleOrder: ['groom', 'bride'] as const,
 
   // Holy Matrimony & Reception details
+  matrimony: {
+    judul: 'Holy Matrimony',
+    mulai: '2026-10-24T09:00:00+07:00',
+    selesai: '2026-10-24T11:00:00+07:00',
+    tempat: 'Gereja HKBP Sukabumi',
+    alamat: 'Sukabumi, Jawa Barat',
+    mapsUrl: 'https://maps.google.com/?q=HKBP+Sukabumi',
+  },
+
   resepsi: {
-    judul: 'Wedding Reception',
+    judul: 'Reception & Adat',
     mulai: '2026-10-24T11:00:00+07:00',
-    selesai: '2026-10-24T14:00:00+07:00',
-    tempat: 'Grand Ballroom (Venue Name)',
-    alamat: 'Jl. Sudirman No. 123, Jakarta Selatan',
-    mapsUrl: 'https://maps.google.com/?q=-6.2,106.8',
+    selesai: '2026-10-24T17:00:00+07:00',
+    tempat: 'Gedung Harsa Sukabumi',
+    alamat: 'Sukabumi, Jawa Barat',
+    mapsUrl: 'https://maps.google.com/?q=Gedung+Harsa+Sukabumi',
   },
 
   // Show thank you message after this time
-  selesaiSemua: '2026-10-24T14:00:00+07:00',
+  selesaiSemua: '2026-10-24T17:00:00+07:00',
 
   quote: {
     teks:
@@ -98,6 +107,10 @@ export const event = {
       { bank: 'BCA', nomor: 'xxx', atasNama: 'Evita Hutagalung' },
       { bank: 'Mandiri', nomor: 'xxx', atasNama: 'Evita Hutagalung' },
     ] satisfies BankAccount[],
+    qris: {
+      image: '/qris.svg',
+      atasNama: 'Evita Hutagalung / Dedy Lubis',
+    },
     alamat: {
       penerima: 'Evita Hutagalung',
       teks: 'Jl. Sudirman No. 45, Kebayoran Baru, Jakarta Selatan 12110',

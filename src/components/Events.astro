@@ -3,10 +3,20 @@ import { Picture } from 'astro:assets';
 import { event } from '../config/event';
 import { formatDate, formatTimeRange } from '../lib/time';
 import { googleCalendarUrl } from '../lib/calendar';
-import bgImg from '../assets/cover-1.jpg';
+import bgImg from '../assets/savethedate.jpg';
 
 const [first, second] = event.coupleOrder.map((k) => event[k].panggilan);
+const m = event.matrimony;
 const r = event.resepsi;
+
+const matrimonyCal = googleCalendarUrl({
+  title: `${m.judul} ${first} & ${second}`,
+  start: m.mulai,
+  end: m.selesai,
+  location: `${m.tempat}, ${m.alamat}`,
+  details: `Holy Matrimony ${first} & ${second}.\n${new URL('/', Astro.site).href}`,
+});
+
 const resepsiCal = googleCalendarUrl({
   title: `${r.judul} ${first} & ${second}`,
   start: r.mulai,
@@ -33,58 +43,57 @@ const iconCal = 'M7 3v3M17 3v3M4 9h16M5 5h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 
     class="absolute inset-0 h-full w-full object-cover"
   />
   <!-- Dark overlay layers: base dimmer + vignette for bright images -->
-  <div class="absolute inset-0 bg-ink/70"></div>
-  <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/40"></div>
+  <div class="absolute inset-0 bg-black/50"></div>
+  <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/60"></div>
 
   <!-- Content -->
   <div class="section relative text-center">
-    <p class="eyebrow !text-gold-soft" data-reveal>Save the Date</p>
+    <p class="eyebrow !text-gold-soft text-[0.6rem]" data-reveal>Save the Date</p>
     <h2 class="section-title mt-2 !text-white" data-reveal>Wedding Events</h2>
 
     <div class="mt-10 space-y-6">
-      <!--
-        Holy Matrimony (Akad): Populated via scripts/invite.ts if private session exists
-      -->
-      <article class="card hidden !bg-white/90 backdrop-blur-sm" data-akad-card data-reveal>
-        <h3 class="font-script text-4xl font-normal">Holy Matrimony</h3>
-        <div class="divider !my-4"></div>
-        <p class="font-serif text-lg font-semibold" data-akad="tanggal"></p>
-        <p class="mt-1 text-sm text-ink-soft" data-akad="waktu"></p>
-        <p class="mt-4 font-semibold" data-akad="tempat"></p>
-        <p class="mt-1 text-sm text-ink-soft" data-akad="alamat"></p>
+      <!-- Holy Matrimony -->
+      <article class="card rounded-2xl bg-black/30 p-6 text-white backdrop-blur-sm ring-1 ring-white/20" data-akad-card data-reveal>
+        <h3 class="font-script text-4xl font-normal leading-tight">{m.judul}</h3>
+        <div class="divider !my-4 !border-white/20"></div>
+        <p class="font-serif text-lg font-semibold leading-snug" data-akad="tanggal">{formatDate(m.mulai)}</p>
+        <p class="mt-1 text-sm text-white/70" data-akad="waktu">{formatTimeRange(m.mulai, m.selesai)}</p>
+        <p class="mt-4 font-semibold text-white" data-akad="tempat">{m.tempat}</p>
+        <p class="mt-1 text-sm text-white/70" data-akad="alamat">{m.alamat}</p>
         <div class="mt-6 flex flex-wrap justify-center gap-2">
-          <a class="btn btn-primary" data-akad="maps" target="_blank" rel="noopener noreferrer">
+          <a class="btn border border-white/30 bg-white/10 text-white hover:bg-white/20 transition" href={m.mapsUrl} data-akad="maps" target="_blank" rel="noopener noreferrer">
             <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d={iconMap}></path></svg>
             View on Maps
           </a>
-          <a class="btn btn-outline" data-akad="gcal" target="_blank" rel="noopener noreferrer">
+          <a class="btn border border-white/20 bg-transparent text-white/80 hover:bg-white/10 transition" href={matrimonyCal} data-akad="gcal" target="_blank" rel="noopener noreferrer">
             <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d={iconCal}></path></svg>
             Add to Calendar
           </a>
         </div>
-        <button type="button" class="mt-3 text-xs text-ink-soft underline underline-offset-4" data-akad="ics">
+        <a href={`${import.meta.env.BASE_URL}matrimony.ics`} download class="mt-3 inline-block text-xs text-white/60 hover:text-white underline underline-offset-4 transition" data-akad="ics">
           Download Calendar File (.ics)
-        </button>
+        </a>
       </article>
 
-      <article class="card !bg-white/90 backdrop-blur-sm" data-resepsi-card data-reveal>
-        <h3 class="font-script text-4xl font-normal">{r.judul}</h3>
-        <div class="divider !my-4"></div>
-        <p class="font-serif text-lg font-semibold">{formatDate(r.mulai)}</p>
-        <p class="mt-1 text-sm text-ink-soft">{formatTimeRange(r.mulai, r.selesai)}</p>
-        <p class="mt-4 font-semibold">{r.tempat}</p>
-        <p class="mt-1 text-sm text-ink-soft">{r.alamat}</p>
+      <!-- Reception & Adat -->
+      <article class="card rounded-2xl bg-black/30 p-6 text-white backdrop-blur-sm ring-1 ring-white/20" data-resepsi-card data-reveal>
+        <h3 class="font-script text-4xl font-normal leading-tight">{r.judul}</h3>
+        <div class="divider !my-4 !border-white/20"></div>
+        <p class="font-serif text-lg font-semibold leading-snug">{formatDate(r.mulai)}</p>
+        <p class="mt-1 text-sm text-white/70">{formatTimeRange(r.mulai, r.selesai)}</p>
+        <p class="mt-4 font-semibold text-white">{r.tempat}</p>
+        <p class="mt-1 text-sm text-white/70">{r.alamat}</p>
         <div class="mt-6 flex flex-wrap justify-center gap-2">
-          <a class="btn btn-primary" href={r.mapsUrl} target="_blank" rel="noopener noreferrer">
+          <a class="btn border border-white/30 bg-white/10 text-white hover:bg-white/20 transition" href={r.mapsUrl} target="_blank" rel="noopener noreferrer">
             <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d={iconMap}></path></svg>
             View on Maps
           </a>
-          <a class="btn btn-outline !border-ink/40 hover:!bg-ink/10" href={resepsiCal} target="_blank" rel="noopener noreferrer">
+          <a class="btn border border-white/20 bg-transparent text-white/80 hover:bg-white/10 transition" href={resepsiCal} target="_blank" rel="noopener noreferrer">
             <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d={iconCal}></path></svg>
             Add to Calendar
           </a>
         </div>
-        <a href={`${import.meta.env.BASE_URL}resepsi.ics`} download class="mt-3 inline-block text-xs text-ink-soft underline underline-offset-4">
+        <a href={`${import.meta.env.BASE_URL}resepsi.ics`} download class="mt-3 inline-block text-xs text-white/60 hover:text-white underline underline-offset-4 transition">
           Download Calendar File (.ics)
         </a>
       </article>

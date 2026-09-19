@@ -1,14 +1,33 @@
 ---
+import { Picture } from 'astro:assets';
 import { event } from '../config/event';
+import footerBg from '../assets/footer.jpg';
 
 const [first, second] = event.coupleOrder.map((k) => event[k].panggilan);
 ---
 
-<footer class="bg-ink px-6 pb-28 pt-16 text-center text-paper">
-  <div class="mx-auto max-w-md" data-reveal>
-    <p class="text-sm leading-relaxed text-paper/80">{event.footer.penutup}</p>
-    <p class="mt-6 font-serif italic text-sm text-gold-soft">“May the Lord bless you and keep you.”</p>
-    <p class="mt-8 text-xs uppercase tracking-[0.3em] text-gold-soft">{event.footer.salam}</p>
-    <p class="mt-2 font-script text-5xl">{first} &amp; {second}</p>
+<footer class="relative min-h-[75dvh] overflow-hidden flex flex-col items-center justify-center px-6 py-24 text-center text-white">
+  <!-- Background image -->
+  <Picture
+    src={footerBg}
+    alt=""
+    aria-hidden="true"
+    formats={['avif', 'webp']}
+    widths={[480, 720, 1080]}
+    sizes="100vw"
+    loading="lazy"
+    class="absolute inset-0 h-full w-full object-cover object-center"
+  />
+  <!-- Dark overlay: flat dimmer + vignette -->
+  <div class="absolute inset-0 bg-black/75"></div>
+  <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80"></div>
+
+  <!-- Content -->
+  <div class="relative z-10 mx-auto max-w-md" data-reveal>
+    <p class="text-sm leading-relaxed text-white/85">{event.footer.penutup}</p>
+    <p class="mt-6 font-serif italic text-base text-gold-soft">“May the Lord bless you and keep you.”</p>
+    <div class="divider !my-6"></div>
+    <p class="text-xs uppercase tracking-[0.3em] text-gold-soft">{event.footer.salam}</p>
+    <p class="mt-3 font-script text-6xl text-white">{first} &amp; {second}</p>
   </div>
 </footer>
