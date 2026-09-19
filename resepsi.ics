@@ -4,13 +4,13 @@ PRODID:-//wedding-card//id
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
 BEGIN:VEVENT
-UID:resepsi@evilanos.github.io
-DTSTAMP:20260918T180824Z
+UID:resepsi@chanandlerz.github.io
+DTSTAMP:20260919T073739Z
 DTSTART:20261027T040000Z
 DTEND:20261027T070000Z
 SUMMARY:Wedding Reception Evita & Dedy
 LOCATION:Grand Ballroom (Venue Name)\, Jl. Sudirman No. 123\, Jakarta Selatan
-DESCRIPTION:Undangan pernikahan Evita & Dedy. https://evilanos.github.io/
+DESCRIPTION:Undangan pernikahan Evita & Dedy. https://chanandlerz.github.io/
 BEGIN:VALARM
 TRIGGER:-P1D
 ACTION:DISPLAY
