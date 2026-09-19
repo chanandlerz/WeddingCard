@@ -25,8 +25,8 @@ const basePath = (import.meta.env.BASE_URL ?? '/').replace(/\/+$/, '');
 
 export const event = {
   site: {
-    title: 'The Wedding of Evita & Dedy',
-    description: 'Together with their families, Evita & Dedy joyfully invite you to celebrate their holy matrimony.',
+    title: 'The Wedding of Dedy & Evita',
+    description: 'Together with their families, Dedy & Evita joyfully invite you to celebrate their holy matrimony.',
     // OG Image: 1200×630, < 300KB in /public
     ogImage: '/og.jpg',
     themeColor: '#FAF8F5',
@@ -51,7 +51,7 @@ export const event = {
   } satisfies Person,
 
   // Name order on cover/hero
-  coupleOrder: ['bride', 'groom'] as const,
+  coupleOrder: ['groom', 'bride'] as const,
 
   // Holy Matrimony & Reception details
   resepsi: {
