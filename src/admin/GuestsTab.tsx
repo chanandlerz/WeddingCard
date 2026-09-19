@@ -327,7 +327,7 @@ function ImportPanel({ existing, onDone }: { existing: GuestRow[]; onDone: () =>
       <p class="text-xs text-ink-soft">
         Kolom: <code>nama</code> (wajib), <code>sapaan</code> (formal/informal), <code>sesi</code>{' '}
         (akad/resepsi/keduanya), <code>max_pax</code> (1–20), <code>no_wa</code>, <code>grup</code>. Pemisah koma atau
-        titik koma. Dari Google Sheets: File → Download → CSV. Contoh: <a class="underline" href="/contoh-tamu.csv">contoh-tamu.csv</a>
+        titik koma. Dari Google Sheets: File → Download → CSV. Contoh: <a class="underline" href={`${import.meta.env.BASE_URL}contoh-tamu.csv`}>contoh-tamu.csv</a>
       </p>
       <input type="file" accept=".csv,text/csv" onChange={(e) => void onFile(e.currentTarget.files?.[0])} />
       {headerError && <p class="text-sm text-rose-700">{headerError}</p>}
