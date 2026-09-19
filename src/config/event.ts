@@ -108,7 +108,7 @@ export const event = {
       { bank: 'Mandiri', nomor: 'xxx', atasNama: 'Evita Hutagalung' },
     ] satisfies BankAccount[],
     qris: {
-      image: '/qris.svg',
+      image: `${basePath}/cover.jpg`,
       atasNama: 'Evita Hutagalung / Dedy Lubis',
     },
     alamat: {

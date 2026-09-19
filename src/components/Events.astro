@@ -1,7 +1,7 @@
 ---
 import { Picture } from 'astro:assets';
 import { event } from '../config/event';
-import { formatDate, formatTimeRange } from '../lib/time';
+import { formatDate, formatTime, formatTimeRange } from '../lib/time';
 import { googleCalendarUrl } from '../lib/calendar';
 import bgImg from '../assets/savethedate.jpg';
 
@@ -57,7 +57,7 @@ const iconCal = 'M7 3v3M17 3v3M4 9h16M5 5h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 
         <h3 class="font-script text-4xl font-normal leading-tight">{m.judul}</h3>
         <div class="divider !my-4 !border-white/20"></div>
         <p class="font-serif text-lg font-semibold leading-snug" data-akad="tanggal">{formatDate(m.mulai)}</p>
-        <p class="mt-1 text-sm text-white/70" data-akad="waktu">{formatTimeRange(m.mulai, m.selesai)}</p>
+        <p class="mt-1 text-sm text-white/70" data-akad="waktu">{formatTime(m.mulai)}</p>
         <p class="mt-4 font-semibold text-white" data-akad="tempat">{m.tempat}</p>
         <p class="mt-1 text-sm text-white/70" data-akad="alamat">{m.alamat}</p>
         <div class="mt-6 flex flex-wrap justify-center gap-2">
@@ -80,7 +80,7 @@ const iconCal = 'M7 3v3M17 3v3M4 9h16M5 5h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 
         <h3 class="font-script text-4xl font-normal leading-tight">{r.judul}</h3>
         <div class="divider !my-4 !border-white/20"></div>
         <p class="font-serif text-lg font-semibold leading-snug">{formatDate(r.mulai)}</p>
-        <p class="mt-1 text-sm text-white/70">{formatTimeRange(r.mulai, r.selesai)}</p>
+        <p class="mt-1 text-sm text-white/70">{formatTime(r.mulai)}</p>
         <p class="mt-4 font-semibold text-white">{r.tempat}</p>
         <p class="mt-1 text-sm text-white/70">{r.alamat}</p>
         <div class="mt-6 flex flex-wrap justify-center gap-2">

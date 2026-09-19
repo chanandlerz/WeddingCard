@@ -64,7 +64,7 @@ function renderAkad(akad: AkadInfo) {
 
   const selesai = akad.selesai ?? akad.mulai;
   field('tanggal')!.textContent = formatDate(akad.mulai);
-  field('waktu')!.textContent = formatTimeRange(akad.mulai, akad.selesai);
+  field('waktu')!.textContent = formatTime(akad.mulai);
   field('tempat')!.textContent = akad.tempat;
   field('alamat')!.textContent = akad.alamat ?? '';
 
