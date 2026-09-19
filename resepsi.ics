@@ -5,16 +5,16 @@ CALSCALE:GREGORIAN
 METHOD:PUBLISH
 BEGIN:VEVENT
 UID:resepsi@chanandlerz.github.io
-DTSTAMP:20260919T081254Z
-DTSTART:20261027T040000Z
-DTEND:20261027T070000Z
-SUMMARY:Wedding Reception Evita & Dedy
-LOCATION:Grand Ballroom (Venue Name)\, Jl. Sudirman No. 123\, Jakarta Selatan
-DESCRIPTION:Undangan pernikahan Evita & Dedy. https://chanandlerz.github.io/
+DTSTAMP:20260919T104227Z
+DTSTART:20261024T040000Z
+DTEND:20261024T100000Z
+SUMMARY:Reception & Adat Dedy & Evita
+LOCATION:Gedung Harsa Sukabumi\, Sukabumi\, Jawa Barat
+DESCRIPTION:Undangan pernikahan Dedy & Evita. https://chanandlerz.github.io/
 BEGIN:VALARM
 TRIGGER:-P1D
 ACTION:DISPLAY
-DESCRIPTION:Wedding Reception Evita & Dedy
+DESCRIPTION:Reception & Adat Dedy & Evita
 END:VALARM
 END:VEVENT
 END:VCALENDAR

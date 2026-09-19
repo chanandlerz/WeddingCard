@@ -1,0 +1,20 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//wedding-card//id
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:matrimony@chanandlerz.github.io
+DTSTAMP:20260919T104227Z
+DTSTART:20261024T020000Z
+DTEND:20261024T040000Z
+SUMMARY:Holy Matrimony Dedy & Evita
+LOCATION:Gereja HKBP Sukabumi\, Sukabumi\, Jawa Barat
+DESCRIPTION:Pemberkatan pernikahan Dedy & Evita. https://chanandlerz.github.io/
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:Holy Matrimony Dedy & Evita
+END:VALARM
+END:VEVENT
+END:VCALENDAR
