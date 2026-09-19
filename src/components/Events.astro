@@ -1,7 +1,9 @@
 ---
+import { Picture } from 'astro:assets';
 import { event } from '../config/event';
 import { formatDate, formatTimeRange } from '../lib/time';
 import { googleCalendarUrl } from '../lib/calendar';
+import bgImg from '../assets/cover-1.jpg';
 
 const [first, second] = event.coupleOrder.map((k) => event[k].panggilan);
 const r = event.resepsi;
@@ -18,16 +20,32 @@ const iconMap =
 const iconCal = 'M7 3v3M17 3v3M4 9h16M5 5h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z';
 ---
 
-<section id="acara" class="bg-paper-deep">
-  <div class="section text-center">
-    <p class="eyebrow" data-reveal>Save the Date</p>
-    <h2 class="section-title mt-2" data-reveal>Wedding Events</h2>
+<section id="acara" class="relative overflow-hidden">
+  <!-- Background image -->
+  <Picture
+    src={bgImg}
+    alt=""
+    aria-hidden="true"
+    formats={['avif', 'webp']}
+    widths={[480, 720, 1080]}
+    sizes="100vw"
+    loading="lazy"
+    class="absolute inset-0 h-full w-full object-cover"
+  />
+  <!-- Dark overlay layers: base dimmer + vignette for bright images -->
+  <div class="absolute inset-0 bg-ink/70"></div>
+  <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/40"></div>
+
+  <!-- Content -->
+  <div class="section relative text-center">
+    <p class="eyebrow !text-gold-soft" data-reveal>Save the Date</p>
+    <h2 class="section-title mt-2 !text-white" data-reveal>Wedding Events</h2>
 
     <div class="mt-10 space-y-6">
       <!--
         Holy Matrimony (Akad): Populated via scripts/invite.ts if private session exists
       -->
-      <article class="card hidden" data-akad-card data-reveal>
+      <article class="card hidden !bg-white/90 backdrop-blur-sm" data-akad-card data-reveal>
         <h3 class="font-script text-4xl font-normal">Holy Matrimony</h3>
         <div class="divider !my-4"></div>
         <p class="font-serif text-lg font-semibold" data-akad="tanggal"></p>
@@ -49,7 +67,7 @@ const iconCal = 'M7 3v3M17 3v3M4 9h16M5 5h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 
         </button>
       </article>
 
-      <article class="card" data-resepsi-card data-reveal>
+      <article class="card !bg-white/90 backdrop-blur-sm" data-resepsi-card data-reveal>
         <h3 class="font-script text-4xl font-normal">{r.judul}</h3>
         <div class="divider !my-4"></div>
         <p class="font-serif text-lg font-semibold">{formatDate(r.mulai)}</p>
@@ -61,7 +79,7 @@ const iconCal = 'M7 3v3M17 3v3M4 9h16M5 5h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 
             <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d={iconMap}></path></svg>
             View on Maps
           </a>
-          <a class="btn btn-outline" href={resepsiCal} target="_blank" rel="noopener noreferrer">
+          <a class="btn btn-outline !border-ink/40 hover:!bg-ink/10" href={resepsiCal} target="_blank" rel="noopener noreferrer">
             <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d={iconCal}></path></svg>
             Add to Calendar
           </a>

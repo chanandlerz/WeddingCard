@@ -1,58 +1,82 @@
 ---
 import { Picture } from 'astro:assets';
-import groomImg from '../assets/couple/groom.jpg';
-import brideImg from '../assets/couple/bride.jpg';
+import coupleImg from '../assets/couple.jpg';
 import { event } from '../config/event';
 
-const people = event.coupleOrder.map((key) => ({
-  person: event[key],
-  img: key === 'groom' ? groomImg : brideImg,
-}));
+const groom = event.groom;
+const bride = event.bride;
 ---
 
-<section id="mempelai" class="section text-center">
-  <p class="eyebrow" data-reveal>Grace &amp; Blessings</p>
-  <p class="mt-4 text-sm leading-relaxed text-ink-soft" data-reveal>
-    By the grace and blessing of God, we joyfully request the honor of your presence to celebrate the holy matrimony of our beloved children:
-  </p>
+<section id="mempelai" class="relative w-full overflow-hidden" data-reveal>
+  <!-- Full-screen couple photo -->
+  <div class="relative h-[90dvh] w-full">
+    <Picture
+      src={coupleImg}
+      alt="Foto bersama"
+      formats={['avif', 'webp']}
+      widths={[480, 720, 1080]}
+      sizes="100vw"
+      loading="lazy"
+      class="absolute inset-0 h-full w-full object-cover"
+    />
+    <!-- Gradient overlay: darker corners for card readability -->
+    <div class="absolute inset-0 bg-gradient-to-br from-black/60 via-transparent to-black/60"></div>
 
-  {
-    people.map(({ person, img }, i) => (
-      <>
-        {i === 1 && (
-          <p class="my-8 font-script text-6xl text-gold" aria-hidden="true">
-            &amp;
-          </p>
-        )}
-        <div class="mt-10" data-reveal>
-          <Picture
-            src={img}
-            alt={`Foto ${person.panggilan}`}
-            formats={['avif', 'webp']}
-            widths={[240, 480]}
-            sizes="240px"
-            loading="lazy"
-            class="mx-auto aspect-[4/5] w-48 rounded-t-full object-cover ring-4 ring-white shadow-lg"
-          />
-          <h3 class="mt-6 font-script text-5xl font-normal">{person.panggilan}</h3>
-          <p class="mt-2 font-serif text-xl font-semibold">{person.namaLengkap}</p>
-          <p class="mt-2 text-sm text-ink-soft">
-            {person.anakKe}
-            <br />
-            {person.ayah} &amp; {person.ibu}
-          </p>
-          {person.instagram && (
-            <a
-              href={`https://instagram.com/${person.instagram}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="btn btn-outline mt-4 !min-h-9 !py-1.5 text-xs"
-            >
-              @{person.instagram}
-            </a>
-          )}
-        </div>
-      </>
-    ))
-  }
+    <!-- Eyebrow centred on top -->
+    <div class="absolute inset-x-0 top-6 flex flex-col items-center gap-1 px-4 text-center">
+      <p class="eyebrow !text-white/80">Grace &amp; Blessings</p>
+    </div>
+
+    <!-- GROOM — top left -->
+    <div class="absolute left-4 top-14 max-w-[52%] rounded-2xl bg-black/30 p-4 text-left text-white backdrop-blur-sm ring-1 ring-white/20" data-reveal>
+      <p class="eyebrow !text-gold-soft text-[0.6rem]">Groom</p>
+      <h3 class="mt-1 font-script text-4xl font-normal leading-tight">{groom.panggilan}</h3>
+      <p class="mt-1 font-serif text-sm font-semibold leading-snug">{groom.namaLengkap}</p>
+      <p class="mt-1.5 text-xs leading-relaxed text-white/70">
+        {groom.anakKe}<br />{groom.ayah} &amp; {groom.ibu}
+      </p>
+      {groom.instagram && (
+        <a
+          href={`https://instagram.com/${groom.instagram}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="mt-2 inline-flex items-center gap-1 rounded-full border border-white/30 px-3 py-1 text-[0.65rem] text-white/80 hover:bg-white/10 transition"
+        >
+          @{groom.instagram}
+        </a>
+      )}
+    </div>
+
+    <!-- BRIDE — bottom right -->
+    <div class="absolute bottom-14 right-4 max-w-[52%] rounded-2xl bg-black/30 p-4 text-right text-white backdrop-blur-sm ring-1 ring-white/20" data-reveal>
+      <p class="eyebrow !text-gold-soft text-[0.6rem]">Bride</p>
+      <h3 class="mt-1 font-script text-4xl font-normal leading-tight">{bride.panggilan}</h3>
+      <p class="mt-1 font-serif text-sm font-semibold leading-snug">{bride.namaLengkap}</p>
+      <p class="mt-1.5 text-xs leading-relaxed text-white/70">
+        {bride.anakKe}<br />{bride.ayah} &amp; {bride.ibu}
+      </p>
+      {bride.instagram && (
+        <a
+          href={`https://instagram.com/${bride.instagram}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="mt-2 inline-flex items-center gap-1 rounded-full border border-white/30 px-3 py-1 text-[0.65rem] text-white/80 hover:bg-white/10 transition"
+        >
+          @{bride.instagram}
+        </a>
+      )}
+    </div>
+
+    <!-- "&" ampersand centred -->
+    <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+      <span class="font-script text-7xl text-white/30 select-none">&amp;</span>
+    </div>
+  </div>
+
+  <!-- Caption below photo -->
+  <div class="mx-auto max-w-md px-6 py-8 text-center" data-reveal>
+    <p class="text-sm leading-relaxed text-ink-soft">
+      By the grace and blessing of God, we joyfully request the honor of your presence to celebrate our holy matrimony.
+    </p>
+  </div>
 </section>

@@ -1,6 +1,8 @@
 ---
+import { Picture } from 'astro:assets';
 import { event } from '../config/event';
 import { formatDate } from '../lib/time';
+import bgImg from '../assets/hero.jpg';
 
 const [first, second] = event.coupleOrder.map((k) => event[k].panggilan);
 const units = [
@@ -11,15 +13,32 @@ const units = [
 ] as const;
 ---
 
-<section id="hero" tabindex="-1" class="min-h-screen-safe outline-none flex flex-col items-center justify-center bg-paper-deep px-6 py-20 text-center">
-  <p class="eyebrow" data-reveal>We are getting married!</p>
-  <h2 class="mt-4 font-script text-7xl font-normal leading-none text-ink" data-reveal>
-    {first}<br /><span class="text-5xl text-gold">&amp;</span><br />{second}
+<section id="hero" tabindex="-1" class="relative min-h-screen-safe overflow-hidden outline-none flex flex-col items-center justify-center px-6 py-20 text-center">
+  <!-- Background image -->
+  <Picture
+    src={bgImg}
+    alt=""
+    aria-hidden="true"
+    formats={['avif', 'webp']}
+    widths={[480, 720, 1080]}
+    sizes="100vw"
+    loading="eager"
+    fetchpriority="high"
+    class="absolute inset-0 h-full w-full object-cover"
+  />
+  <!-- Dark overlay: flat dimmer + top-to-bottom vignette -->
+  <div class="absolute inset-0 bg-ink/65"></div>
+  <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/50"></div>
+
+  <!-- Content -->
+  <p class="eyebrow relative !text-gold-soft" data-reveal>We are getting married!</p>
+  <h2 class="relative mt-4 font-script text-7xl font-normal leading-none text-white" data-reveal>
+    {first}<br /><span class="text-5xl text-gold-soft">&amp;</span><br />{second}
   </h2>
-  <p class="mt-6 font-serif text-xl" data-reveal>{formatDate(event.resepsi.mulai)}</p>
+  <p class="relative mt-6 font-serif text-xl text-white/90" data-reveal>{formatDate(event.resepsi.mulai)}</p>
 
   <div
-    class="mt-10 w-full max-w-sm"
+    class="relative mt-10 w-full max-w-sm"
     data-countdown
     data-target={event.resepsi.mulai}
     data-end={event.selesaiSemua}
@@ -28,21 +47,21 @@ const units = [
     <div class="grid grid-cols-4 gap-2" data-countdown-running>
       {
         units.map(([key, label]) => (
-          <div class="rounded-xl bg-white/70 py-3 ring-1 ring-gold-soft/60">
-            <span class="block font-serif text-3xl font-semibold tabular-nums" data-unit={key}>
+          <div class="rounded-xl bg-white/15 py-3 ring-1 ring-white/30 backdrop-blur-sm">
+            <span class="block font-serif text-3xl font-semibold tabular-nums text-white" data-unit={key}>
               –
             </span>
-            <span class="text-[11px] uppercase tracking-wider text-ink-soft">{label}</span>
+            <span class="text-[11px] uppercase tracking-wider text-white/70">{label}</span>
           </div>
         ))
       }
     </div>
-    <p class="hidden font-serif text-xl italic text-ink" data-countdown-today>
+    <p class="hidden font-serif text-xl italic text-white" data-countdown-today>
       Our blessed day has arrived ✨
     </p>
     <div class="hidden" data-countdown-done>
-      <p class="font-serif text-2xl text-ink">Thank You</p>
-      <p class="mt-2 text-sm text-ink-soft">
+      <p class="font-serif text-2xl text-white">Thank You</p>
+      <p class="mt-2 text-sm text-white/70">
         for your prayers, presence, and warmest wishes. Our happiness is complete with you.
       </p>
     </div>

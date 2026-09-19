@@ -36,18 +36,18 @@ export const event = {
     panggilan: 'Dedy',
     namaLengkap: 'Dedy Erianjono Lubis',
     anakKe: 'Son of',
-    ayah: 'Mr. Lubis',
-    ibu: 'Mrs. Lubis',
-    instagram: 'dedylbs',
+    ayah: 'Mr. H. Lubis (✝)',
+    ibu: 'Mrs. T. br Banjarnahor (✝)',
+    instagram: 'dedylbs28',
   } satisfies Person,
 
   bride: {
     panggilan: 'Evita',
-    namaLengkap: 'Evita Hutagalung',
+    namaLengkap: 'Evita Sartika Hutagalung',
     anakKe: 'Daughter of',
-    ayah: 'Mr. Hutagalung',
-    ibu: 'Mrs. Hutagalung',
-    instagram: 'evitahutagalung',
+    ayah: 'Mr. T. Hutagalung (✝)',
+    ibu: 'Mrs. L. br Silaban',
+    instagram: 'evita_hutagalung',
   } satisfies Person,
 
   // Name order on cover/hero
@@ -56,15 +56,15 @@ export const event = {
   // Holy Matrimony & Reception details
   resepsi: {
     judul: 'Wedding Reception',
-    mulai: '2026-10-27T11:00:00+07:00',
-    selesai: '2026-10-27T14:00:00+07:00',
+    mulai: '2026-10-24T11:00:00+07:00',
+    selesai: '2026-10-24T14:00:00+07:00',
     tempat: 'Grand Ballroom (Venue Name)',
     alamat: 'Jl. Sudirman No. 123, Jakarta Selatan',
     mapsUrl: 'https://maps.google.com/?q=-6.2,106.8',
   },
 
   // Show thank you message after this time
-  selesaiSemua: '2026-10-27T14:00:00+07:00',
+  selesaiSemua: '2026-10-24T14:00:00+07:00',
 
   quote: {
     teks:
