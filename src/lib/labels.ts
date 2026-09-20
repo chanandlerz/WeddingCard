@@ -1,8 +1,8 @@
 import type { RsvpStatus } from './api';
 
 export const STATUS_OPTIONS: Array<{ value: RsvpStatus; label: string }> = [
-  { value: 'hadir', label: 'Joyfully Attend' },
-  { value: 'tidak', label: 'Regretfully Decline' },
+  { value: 'hadir', label: 'Yes' },
+  { value: 'tidak', label: 'No' },
   { value: 'ragu', label: 'Uncertain' },
 ];
 

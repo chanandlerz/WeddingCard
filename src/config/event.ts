@@ -112,7 +112,7 @@ export const event = {
     //   atasNama: 'Evita Hutagalung / Dedy Lubis',
     // },
     alamat: {
-      penerima: 'Evita Hutagalung',
+      penerima: 'Dedy - Evita',
       teks: 'Salemba Residence Apartement. Jl. Salemba Tengah II No.10',
     },
   },
