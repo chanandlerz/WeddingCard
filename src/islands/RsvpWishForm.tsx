@@ -144,7 +144,7 @@ export default function RsvpWishForm() {
       parts.push(
         result.rsvp.status === 'tidak'
           ? 'RSVP saved. Thank you for letting us know.'
-          : `RSVP confirmed: ${STATUS_LABEL[result.rsvp.status]} (${result.rsvp.jumlah_orang} ${result.rsvp.jumlah_orang > 1 ? 'guests' : 'guest'}).`,
+          : `RSVP confirmed: ${STATUS_LABEL[result.rsvp.status]}.`,
       );
     }
     if (result.wish) {
@@ -175,8 +175,7 @@ export default function RsvpWishForm() {
           <legend class="mb-1.5 text-sm font-medium">RSVP Confirmation</legend>
           {guest.rsvp && (
             <p class="mb-2 text-xs text-ink-soft">
-              Current status: <strong>{STATUS_LABEL[guest.rsvp.status]}</strong>
-              {guest.rsvp.status !== 'tidak' && ` (${guest.rsvp.jumlah_orang} ${guest.rsvp.jumlah_orang > 1 ? 'guests' : 'guest'})`}. You can update your response anytime.
+              Current status: <strong>{STATUS_LABEL[guest.rsvp.status]}</strong>. You can update your response anytime.
             </p>
           )}
           <div class="grid grid-cols-3 gap-2">
@@ -203,26 +202,6 @@ export default function RsvpWishForm() {
             <p class="mt-2 text-xs text-ink-soft">Please kindly confirm before {formatDateTime(deadline)}.</p>
           )}
         </fieldset>
-      )}
-
-      {canRsvp && status && status !== 'tidak' && (
-        <div>
-          <label for="f-jumlah" class="mb-1.5 block text-sm font-medium">
-            Number of Guests
-          </label>
-          <select
-            id="f-jumlah"
-            class="input"
-            value={jumlah}
-            onChange={(e) => setJumlah(Number(e.currentTarget.value))}
-          >
-            {Array.from({ length: maxPax }, (_, i) => i + 1).map((n) => (
-              <option key={n} value={n}>
-                {n} {n > 1 ? 'persons' : 'person'}
-              </option>
-            ))}
-          </select>
-        </div>
       )}
 
       {!guest && (
