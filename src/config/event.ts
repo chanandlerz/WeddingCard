@@ -104,16 +104,16 @@ export const event = {
     intro:
       'Your presence and warm prayers are the greatest blessing to our marriage. However, should you wish to honor us with a wedding gift, you may send it through:',
     accounts: [
-      { bank: 'BCA', nomor: 'xxx', atasNama: 'Evita Hutagalung' },
-      { bank: 'Mandiri', nomor: 'xxx', atasNama: 'Evita Hutagalung' },
+      { bank: 'BTN', nomor: '101700041681', atasNama: 'Dedy Erianjono Lubis' },
+      { bank: 'BCA', nomor: '8780464195', atasNama: 'Evita Sartika Hutagalung' },
     ] satisfies BankAccount[],
-    qris: {
-      image: `${basePath}/cover.jpg`,
-      atasNama: 'Evita Hutagalung / Dedy Lubis',
-    },
+    // qris: {
+    //   image: `${basePath}/cover.jpg`,
+    //   atasNama: 'Evita Hutagalung / Dedy Lubis',
+    // },
     alamat: {
       penerima: 'Evita Hutagalung',
-      teks: 'Jl. Sudirman No. 45, Kebayoran Baru, Jakarta Selatan 12110',
+      teks: 'Salemba Residence Apartement. Jl. Salemba Tengah II No.10',
     },
   },
 
