@@ -15,7 +15,7 @@
 /music/*
   Cache-Control: public, max-age=604800
 
-/og.jpg
+/header.png
   Cache-Control: public, max-age=86400
 
 /admin

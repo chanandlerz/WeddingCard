@@ -28,7 +28,7 @@ export const event = {
     title: 'The Wedding of Dedy & Evita',
     description: 'Together with their families, Dedy & Evita joyfully invite you to celebrate their holy matrimony.',
     // OG Image: 1200×630, < 300KB in /public
-    ogImage: '/og.jpg',
+    ogImage: '/header.png',
     themeColor: '#FAF8F5',
   },
 

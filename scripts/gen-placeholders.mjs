@@ -27,7 +27,7 @@ const files = [
       label: `GALERI ${i + 1}`,
     };
   }),
-  { path: 'public/og.jpg', w: 1200, h: 630, label: 'RAKA & NADIA · 12.12.2026', quality: 75 },
+  { path: 'public/header.png', w: 1200, h: 630, label: 'RAKA & NADIA · 12.12.2026', quality: 75 },
 ];
 
 const exists = (p) => access(p).then(() => true, () => false);
