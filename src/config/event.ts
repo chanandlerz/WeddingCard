@@ -113,7 +113,7 @@ export const event = {
     // },
     alamat: {
       penerima: 'Dedy - Evita',
-      teks: 'Salemba Residence Apartement. Jl. Salemba Tengah II No.10',
+      teks: 'Salemba Residence Apartement. Jl. Salemba Tengah II No.10, Kec. Senen, Kota Jakarta Pusat',
     },
   },
 
