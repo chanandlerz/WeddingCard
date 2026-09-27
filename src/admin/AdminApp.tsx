@@ -101,7 +101,8 @@ function Centered({ children }: { children: preact.ComponentChildren }) {
 
 function Login() {
   const [email, setEmail] = useState('');
-  const [state, setState] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
+  const [password, setPassword] = useState('');
+  const [state, setState] = useState<'idle' | 'sending' | 'error'>('idle');
   const [message, setMessage] = useState('');
 
   // Otomatis deteksi full path admin saat ini (misal http://localhost:4321/admin atau https://.../WeddingCard/admin)
@@ -110,15 +111,16 @@ function Login() {
   async function submit(e: Event) {
     e.preventDefault();
     setState('sending');
-    const { error } = await sb.auth.signInWithOtp({
+    setMessage('');
+    const { error } = await sb.auth.signInWithPassword({
       email: email.trim(),
-      options: { shouldCreateUser: false, emailRedirectTo: redirectUrl },
+      password,
     });
     if (error) {
       setState('error');
       setMessage(error.message);
     } else {
-      setState('sent');
+      setState('idle');
     }
   }
 
@@ -161,31 +163,37 @@ function Login() {
         </div>
 
         <form class="space-y-4" onSubmit={submit}>
-          {state === 'sent' ? (
-            <p class="text-sm">
-              Link masuk sudah dikirim ke <strong>{email}</strong>. Buka email dan klik link tersebut di browser ini.
-            </p>
-          ) : (
-            <>
-              <div>
-                <label class="block text-sm font-medium" for="admin-email">
-                  Email admin
-                </label>
-                <input
-                  id="admin-email"
-                  type="email"
-                  class="input mt-1 w-full"
-                  required
-                  autoComplete="email"
-                  value={email}
-                  onInput={(e) => setEmail(e.currentTarget.value)}
-                />
-              </div>
-              <button type="submit" class="btn btn-primary w-full" disabled={state === 'sending'}>
-                {state === 'sending' ? 'Mengirim…' : 'Kirim Magic Link'}
-              </button>
-            </>
-          )}
+          <div>
+            <label class="block text-sm font-medium" for="admin-email">
+              Email admin
+            </label>
+            <input
+              id="admin-email"
+              type="email"
+              class="input mt-1 w-full"
+              required
+              autoComplete="email"
+              value={email}
+              onInput={(e) => setEmail(e.currentTarget.value)}
+            />
+          </div>
+          <div>
+            <label class="block text-sm font-medium" for="admin-password">
+              Kata Sandi
+            </label>
+            <input
+              id="admin-password"
+              type="password"
+              class="input mt-1 w-full"
+              required
+              autoComplete="current-password"
+              value={password}
+              onInput={(e) => setPassword(e.currentTarget.value)}
+            />
+          </div>
+          <button type="submit" class="btn btn-primary w-full" disabled={state === 'sending'}>
+            {state === 'sending' ? 'Masuk…' : 'Masuk'}
+          </button>
         </form>
 
         {state === 'error' && <p class="text-sm text-rose-700">{message}</p>}
