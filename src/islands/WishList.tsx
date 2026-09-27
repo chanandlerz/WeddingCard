@@ -184,11 +184,13 @@ export default function WishList() {
   if (!backendConfigured) return null;
 
   return (
-    <div ref={rootRef} class="mt-8">
-      <div class="mb-3 flex items-center justify-between text-xs text-ink-soft">
-        <span>{items.filter((w) => !w.awaitingModeration).length > 0 ? 'Recent Wishes' : ''}</span>
+    <div ref={rootRef} class="mt-8 rounded-2xl bg-paper/80 p-4 sm:p-5 shadow-[0_8px_30px_-12px_rgb(58_51_43/0.2)] ring-1 ring-gold-soft/60 backdrop-blur-xs">
+      <div class="mb-3 flex items-center justify-between border-b border-ink/5 pb-2 text-xs text-ink-soft">
+        <span class="font-serif text-sm font-semibold tracking-wide text-ink">
+          {items.filter((w) => !w.awaitingModeration).length > 0 ? 'Recent Wishes' : 'Wishes'}
+        </span>
         {live !== 'off' && (
-          <span class="flex items-center gap-1.5">
+          <span class="flex items-center gap-1.5 font-sans text-[11px]">
             <span class={`h-2 w-2 rounded-full ${live === 'realtime' ? 'bg-emerald-500' : 'bg-amber-500'}`} />
             {live === 'realtime' ? 'Live' : 'Updated periodically'}
           </span>
@@ -197,7 +199,7 @@ export default function WishList() {
 
       <div
         ref={scrollRef}
-        class="max-h-[70dvh] space-y-3 overflow-y-auto overscroll-contain rounded-2xl bg-paper-deep/60 p-3"
+        class="wishes-scrollbar max-h-[420px] space-y-3 overflow-y-auto overscroll-contain pr-1.5"
         aria-live="polite"
         aria-busy={loading}
       >
