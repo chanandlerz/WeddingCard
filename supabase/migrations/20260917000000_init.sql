@@ -58,7 +58,7 @@ create table public.settings (
   rsvp_deadline    timestamptz,
   -- Placeholder: {sapaan}, {nama}, {link}
   wa_template      text not null default
-    E'Kepada Yth.\n{sapaan} {nama}\n\nTanpa mengurangi rasa hormat, kami mengundang {sapaan} {nama} untuk hadir di acara pernikahan kami.\n\nInfo lengkap acara:\n{link}\n\nMerupakan suatu kehormatan bagi kami apabila berkenan hadir dan memberikan doa restu.\n\nTerima kasih.',
+    E'Kepada Yth.\n{sapaan} {nama}\n\nDengan segala kerendahan hati dan penuh cinta kasih dari Tuhan, melalui pesan ini kami ingin berbagi kebahagiaan dan mengundang Bapak/Ibu/Saudara/I untuk hadir dalam merayakan hari berbahagia kami.\n\nInfo lengkap acara:\n{link}\n\nMerupakan suatu kehormatan bagi kami apabila berkenan hadir dan memberikan doa restu.\n\nSalam hangat,\nDedy & Evita',
   updated_at       timestamptz not null default now()
 );
 insert into public.settings (id) values (1);

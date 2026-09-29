@@ -31,7 +31,7 @@ export const event = {
     ogImage: '/header.png',
     themeColor: '#FAF8F5',
   },
-
+  
   groom: {
     panggilan: 'Dedy',
     namaLengkap: 'Dedy Erianjono Lubis',
