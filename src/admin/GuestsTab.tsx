@@ -41,7 +41,6 @@ function toDraft(rec: Record<string, string>): Draft | string {
   if (!Number.isInteger(max_pax) || max_pax < 1 || max_pax > 20) return `max_pax "${paxRaw}" harus 1–20`;
   const waRaw = (rec.no_wa ?? '').trim();
   const no_wa = waRaw ? normalizePhone(waRaw) : null;
-  if (waRaw && !no_wa) return `no_wa "${waRaw}" tidak valid`;
   return { nama, sapaan: sapaanRaw as Sapaan, sesi, max_pax, no_wa, grup: (rec.grup ?? '').trim() || null };
 }
 
@@ -207,15 +206,26 @@ export default function GuestsTab() {
                   </td>
                   <td class="px-3 py-2">
                     <div class="flex flex-wrap justify-end gap-1">
-                      <a
-                        class="btn btn-primary !min-h-8 !px-3 !py-1 text-xs"
-                        href={waUrl(phone, renderTemplate(template, g, guestLink(g.slug)))}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        title={phone ? `Kirim ke ${phone}` : 'Tanpa nomor: pilih kontak di WhatsApp'}
-                      >
-                        WA
-                      </a>
+                      {phone ? (
+                        <a
+                          class="btn btn-primary !min-h-8 !px-3 !py-1 text-xs"
+                          href={waUrl(phone, renderTemplate(template, g, guestLink(g.slug)))}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          title={`Kirim ke ${phone}`}
+                        >
+                          WA
+                        </a>
+                      ) : (
+                        <button
+                          type="button"
+                          class="btn btn-outline !min-h-8 !px-3 !py-1 text-xs opacity-40 cursor-not-allowed"
+                          disabled
+                          title="Tidak ada nomor WhatsApp yang valid"
+                        >
+                          WA
+                        </button>
+                      )}
                       <button type="button" class="btn btn-outline !min-h-8 !px-3 !py-1 text-xs" onClick={() => void copyLink(g)}>
                         Link
                       </button>
