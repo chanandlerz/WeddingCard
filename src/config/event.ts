@@ -122,9 +122,9 @@ export const event = {
     judul: 'Wedding Song',
   },
 
-  // Guest greeting prefix: "Dear, {label} {name}"
+  // Guest greeting prefix: "{label} {name}"
   sapaanLabel: {
-    formal: 'Mr. & Mrs.',
+    formal: 'Yth.',
     informal: '',
   },
   fallbackGuestName: 'Honored Guest',
