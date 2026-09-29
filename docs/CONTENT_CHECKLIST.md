@@ -34,7 +34,7 @@ Kirim file asli (tanpa kompres WA; kirim via Google Drive). Kompresi dilakukan o
 | Foto mempelai pria | Portrait 4:5, min. 800×1000 | `src/assets/couple/groom.jpg` |
 | Foto mempelai wanita | Portrait 4:5, min. 800×1000 | `src/assets/couple/bride.jpg` |
 | Galeri prewedding | 6–12 foto, sisi panjang ≥ 1600px | `src/assets/gallery/01.jpg`, `02.jpg`, … |
-| Thumbnail WhatsApp (OG) | **1200×630, < 300KB**, JPG | `public/og.jpg` |
+| Thumbnail WhatsApp (OG) | **1200×630, < 300KB**, JPG | `public/header.png` |
 
 - [ ] Wajah di foto cover berada di **sepertiga atas**, karena bagian bawah tertutup teks.
 - [ ] Thumbnail OG final **sebelum blast**. WhatsApp menyimpan cache preview dan sulit diperbarui.

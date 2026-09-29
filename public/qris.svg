@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="100%" height="100%">
+  <rect width="300" height="300" fill="#FFFFFF"/>
+  <!-- Corner Finder Pattern: Top Left -->
+  <rect x="20" y="20" width="70" height="70" rx="8" fill="#1f2937"/>
+  <rect x="30" y="30" width="50" height="50" rx="4" fill="#FFFFFF"/>
+  <rect x="40" y="40" width="30" height="30" rx="2" fill="#1f2937"/>
+  
+  <!-- Corner Finder Pattern: Top Right -->
+  <rect x="210" y="20" width="70" height="70" rx="8" fill="#1f2937"/>
+  <rect x="220" y="30" width="50" height="50" rx="4" fill="#FFFFFF"/>
+  <rect x="230" y="40" width="30" height="30" rx="2" fill="#1f2937"/>
+  
+  <!-- Corner Finder Pattern: Bottom Left -->
+  <rect x="20" y="210" width="70" height="70" rx="8" fill="#1f2937"/>
+  <rect x="30" y="220" width="50" height="50" rx="4" fill="#FFFFFF"/>
+  <rect x="40" y="230" width="30" height="30" rx="2" fill="#1f2937"/>
+
+  <!-- Timing and decorative patterns -->
+  <g fill="#1f2937">
+    <rect x="100" y="25" width="10" height="10"/>
+    <rect x="120" y="25" width="10" height="10"/>
+    <rect x="140" y="25" width="10" height="10"/>
+    <rect x="170" y="25" width="10" height="10"/>
+    <rect x="100" y="45" width="20" height="10"/>
+    <rect x="130" y="45" width="10" height="20"/>
+    <rect x="160" y="45" width="20" height="10"/>
+    <rect x="110" y="75" width="30" height="10"/>
+    <rect x="150" y="75" width="20" height="10"/>
+
+    <!-- Center QRIS Badge -->
+    <rect x="25" y="100" width="10" height="10"/>
+    <rect x="55" y="100" width="20" height="10"/>
+    <rect x="25" y="120" width="20" height="10"/>
+    <rect x="65" y="120" width="10" height="20"/>
+    <rect x="35" y="150" width="20" height="10"/>
+    <rect x="75" y="150" width="10" height="10"/>
+    <rect x="25" y="170" width="10" height="20"/>
+    <rect x="55" y="170" width="20" height="10"/>
+
+    <rect x="215" y="100" width="20" height="10"/>
+    <rect x="245" y="100" width="10" height="10"/>
+    <rect x="265" y="100" width="15" height="10"/>
+    <rect x="215" y="120" width="10" height="20"/>
+    <rect x="235" y="130" width="20" height="10"/>
+    <rect x="265" y="120" width="15" height="20"/>
+    <rect x="215" y="160" width="20" height="10"/>
+    <rect x="255" y="150" width="25" height="10"/>
+    <rect x="225" y="180" width="10" height="10"/>
+    <rect x="245" y="170" width="20" height="20"/>
+
+    <!-- Bottom right patterns -->
+    <rect x="100" y="215" width="20" height="10"/>
+    <rect x="130" y="215" width="20" height="20"/>
+    <rect x="160" y="215" width="10" height="10"/>
+    <rect x="180" y="215" width="10" height="10"/>
+    <rect x="200" y="215" width="20" height="10"/>
+    <rect x="230" y="215" width="30" height="10"/>
+
+    <rect x="100" y="245" width="10" height="35"/>
+    <rect x="120" y="255" width="20" height="10"/>
+    <rect x="150" y="245" width="10" height="20"/>
+    <rect x="170" y="235" width="20" height="20"/>
+    <rect x="200" y="245" width="20" height="10"/>
+    <rect x="230" y="245" width="10" height="20"/>
+    <rect x="250" y="235" width="30" height="10"/>
+    <rect x="250" y="255" width="10" height="25"/>
+    <rect x="270" y="255" width="10" height="25"/>
+
+    <rect x="130" y="275" width="30" height="10"/>
+    <rect x="180" y="265" width="20" height="20"/>
+    <rect x="210" y="265" width="30" height="10"/>
+  </g>
+
+  <!-- Center QRIS Emblem Box -->
+  <rect x="105" y="105" width="90" height="90" rx="12" fill="#B38E46"/>
+  <rect x="110" y="110" width="80" height="80" rx="8" fill="#FFFFFF"/>
+  <text x="150" y="145" font-family="system-ui, sans-serif" font-weight="900" font-size="20" fill="#B38E46" text-anchor="middle" letter-spacing="1">QRIS</text>
+  <text x="150" y="165" font-family="system-ui, sans-serif" font-weight="600" font-size="9" fill="#6E665E" text-anchor="middle" letter-spacing="0.5">PAYMENT</text>
+</svg>

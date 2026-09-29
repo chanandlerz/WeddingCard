@@ -64,7 +64,7 @@ function renderAkad(akad: AkadInfo) {
 
   const selesai = akad.selesai ?? akad.mulai;
   field('tanggal')!.textContent = formatDate(akad.mulai);
-  field('waktu')!.textContent = formatTimeRange(akad.mulai, akad.selesai);
+  field('waktu')!.textContent = formatTime(akad.mulai);
   field('tempat')!.textContent = akad.tempat;
   field('alamat')!.textContent = akad.alamat ?? '';
 
@@ -75,23 +75,27 @@ function renderAkad(akad: AkadInfo) {
 
   const location = [akad.tempat, akad.alamat].filter(Boolean).join(', ');
   const cal = {
-    title: `Akad Nikah ${couple}`,
+    title: `Holy Matrimony ${couple}`,
     start: akad.mulai,
     end: selesai,
     location,
-    details: `Undangan pernikahan ${couple}.`,
+    details: `Holy Matrimony ${couple}.`,
   };
   field<HTMLAnchorElement>('gcal')!.href = googleCalendarUrl(cal);
-  field<HTMLButtonElement>('ics')!.addEventListener('click', () => {
-    const blob = new Blob([icsContent(cal, `akad@${location.length}.wedding`)], { type: 'text/calendar' });
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = 'akad-nikah.ics';
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    setTimeout(() => URL.revokeObjectURL(a.href), 5000);
-  });
+  const icsEl = field<HTMLElement>('ics');
+  if (icsEl) {
+    icsEl.addEventListener('click', (e) => {
+      e.preventDefault();
+      const blob = new Blob([icsContent(cal, `matrimony@${location.length}.wedding`)], { type: 'text/calendar' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'holy-matrimony.ics';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(a.href), 5000);
+    });
+  }
 
   card.classList.remove('hidden');
 }
@@ -183,7 +187,7 @@ function initCopy() {
     if (!btn) return;
     const text = btn.dataset.copy ?? '';
     const ok = await copyText(text);
-    toast(ok ? 'Berhasil disalin ✓' : `Tidak bisa menyalin otomatis. Silakan salin manual:\n${text}`, ok ? 2000 : 6000);
+    toast(ok ? 'Copied to clipboard ✓' : `Could not copy automatically. Please copy manually:\n${text}`, ok ? 2000 : 6000);
   });
 }
 

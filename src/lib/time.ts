@@ -8,18 +8,18 @@ const lazy = <T>(make: () => T) => {
 };
 
 const dateFmt = lazy(
-  () => new Intl.DateTimeFormat('id-ID', { timeZone: TZ, weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }),
+  () => new Intl.DateTimeFormat('en-US', { timeZone: TZ, weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' }),
 );
 const shortDateFmt = lazy(
-  () => new Intl.DateTimeFormat('id-ID', { timeZone: TZ, day: '2-digit', month: '2-digit', year: 'numeric' }),
+  () => new Intl.DateTimeFormat('en-GB', { timeZone: TZ, day: '2-digit', month: '2-digit', year: 'numeric' }),
 );
 const timeFmt = lazy(
-  () => new Intl.DateTimeFormat('id-ID', { timeZone: TZ, hour: '2-digit', minute: '2-digit', hour12: false }),
+  () => new Intl.DateTimeFormat('en-US', { timeZone: TZ, hour: 'numeric', minute: '2-digit', hour12: true }),
 );
-const rtf = lazy(() => new Intl.RelativeTimeFormat('id-ID', { numeric: 'auto' }));
+const rtf = lazy(() => new Intl.RelativeTimeFormat('en', { numeric: 'auto' }));
 
 const toDate = (v: string | Date) => (typeof v === 'string' ? new Date(v) : v);
-const hhmm = (v: string | Date) => timeFmt().format(toDate(v)).replace(':', '.');
+const hhmm = (v: string | Date) => timeFmt().format(toDate(v));
 
 /** "Sabtu, 12 Desember 2026" */
 export const formatDate = (v: string | Date) => dateFmt().format(toDate(v));
@@ -27,14 +27,14 @@ export const formatDate = (v: string | Date) => dateFmt().format(toDate(v));
 /** "12.12.2026" untuk hero */
 export const formatShortDate = (v: string | Date) => shortDateFmt().format(toDate(v)).replaceAll('/', '.');
 
-/** "11.00 WIB" */
+/** "11:00 AM WIB" */
 export const formatTime = (v: string | Date) => `${hhmm(v)} WIB`;
 
-/** "11.00 – 14.00 WIB" */
+/** "11:00 AM – 2:00 PM WIB" */
 export const formatTimeRange = (start: string | Date, end?: string | Date | null) =>
-  end ? `${hhmm(start)} – ${formatTime(end)}` : `${formatTime(start)} – selesai`;
+  end ? `${hhmm(start)} – ${formatTime(end)}` : `${formatTime(start)} onwards`;
 
-/** "Sabtu, 12 Desember 2026, 23.59 WIB" */
+/** "Saturday, December 12, 2026, 11:00 AM WIB" */
 export const formatDateTime = (v: string | Date) => `${formatDate(v)}, ${formatTime(v)}`;
 
 const UNITS: Array<[Intl.RelativeTimeFormatUnit, number]> = [
@@ -46,15 +46,15 @@ const UNITS: Array<[Intl.RelativeTimeFormatUnit, number]> = [
   ['minute', 60],
 ];
 
-/** "2 jam yang lalu", "baru saja" */
+/** "2 hours ago", "just now" */
 export function formatRelative(v: string | Date, now = Date.now()): string {
   const diff = Math.round((toDate(v).getTime() - now) / 1000);
   const abs = Math.abs(diff);
-  if (abs < 45) return 'baru saja';
+  if (abs < 45) return 'just now';
   for (const [unit, secs] of UNITS) {
     if (abs >= secs || unit === 'minute') {
       return rtf().format(Math.round(diff / secs), unit);
     }
   }
-  return 'baru saja';
+  return 'just now';
 }

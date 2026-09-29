@@ -21,93 +21,118 @@ export type Person = {
 
 export type BankAccount = { bank: string; nomor: string; atasNama: string };
 
+const basePath = (import.meta.env.BASE_URL ?? '/').replace(/\/+$/, '');
+
 export const event = {
   site: {
-    title: 'The Wedding of Raka & Omak',
-    description: 'Dengan penuh sukacita, kami mengundang Anda untuk hadir di hari bahagia kami.',
-    // Gambar OG: 1200×630, < 300KB, di /public (URL absolut dibentuk dari PUBLIC_SITE_URL)
-    ogImage: '/og.jpg',
-    themeColor: '#f6f1e9',
+    title: 'The Wedding of Dedy & Evita',
+    description: 'Together with their families, Dedy & Evita joyfully invite you to celebrate their holy matrimony.',
+    // OG Image: 1200×630, < 300KB in /public
+    ogImage: '/header.png',
+    themeColor: '#FAF8F5',
   },
 
   groom: {
-    panggilan: 'Raka',
-    namaLengkap: 'Raka Aditya Pratama, S.T.',
-    anakKe: 'Putra pertama dari',
-    ayah: 'Bapak Hendra Pratama',
-    ibu: 'Ibu Sri Wahyuni',
-    instagram: 'raka.placeholder',
+    panggilan: 'Dedy',
+    namaLengkap: 'Dedy Erianjono Lubis',
+    anakKe: 'Son of',
+    ayah: 'Mr. H. Lubis (✝)',
+    ibu: 'Mrs. T. br Banjarnahor (✝)',
+    instagram: 'dedylbs28',
   } satisfies Person,
 
   bride: {
-    panggilan: 'Nadia',
-    namaLengkap: 'Nadia Putri Maharani, S.Ds.',
-    anakKe: 'Putri kedua dari',
-    ayah: 'Bapak Agus Setiawan',
-    ibu: 'Ibu Rina Kartika',
-    instagram: 'nadia.placeholder',
+    panggilan: 'Evita',
+    namaLengkap: 'Evita Sartika Hutagalung',
+    anakKe: 'Daughter of',
+    ayah: 'Mr. T. Hutagalung (✝)',
+    ibu: 'Mrs. L. br Silaban',
+    instagram: 'evita_hutagalung',
   } satisfies Person,
 
-  // Urutan nama di cover/hero
-  coupleOrder: ['bride', 'groom'] as const,
+  // Name order on cover/hero
+  coupleOrder: ['groom', 'bride'] as const,
 
-  // Resepsi = publik & menjadi target countdown hari-H.
-  resepsi: {
-    judul: 'Resepsi',
-    mulai: '2026-12-12T11:00:00+07:00',
-    selesai: '2026-12-12T14:00:00+07:00',
-    tempat: 'Gedung Contoh Ballroom (placeholder)',
-    alamat: 'Jl. Placeholder No. 123, Jakarta Selatan',
-    mapsUrl: 'https://maps.google.com/?q=-6.2,106.8',
+  // Holy Matrimony & Reception details
+  matrimony: {
+    judul: 'Holy Matrimony',
+    mulai: '2026-10-24T09:00:00+07:00',
+    selesai: '2026-10-24T11:00:00+07:00',
+    tempat: 'Gereja HKBP Sukabumi',
+    alamat: 'Sukabumi, Jawa Barat',
+    mapsUrl: 'https://maps.google.com/?q=HKBP+Sukabumi',
   },
 
-  // Tampilkan pesan terima kasih setelah waktu ini.
-  selesaiSemua: '2026-12-12T14:00:00+07:00',
+  resepsi: {
+    judul: 'Reception & Adat',
+    mulai: '2026-10-24T11:00:00+07:00',
+    selesai: '2026-10-24T17:00:00+07:00',
+    tempat: 'Gedung Harsa Sukabumi',
+    alamat: 'Sukabumi, Jawa Barat',
+    mapsUrl: 'https://maps.google.com/?q=Gedung+Harsa+Sukabumi',
+  },
+
+  // Show thank you message after this time
+  selesaiSemua: '2026-10-24T17:00:00+07:00',
 
   quote: {
     teks:
-      'Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu pasangan hidup dari jenismu sendiri, supaya kamu merasa tenteram kepadanya, dan dijadikan-Nya di antaramu rasa kasih dan sayang.',
-    sumber: 'QS. Ar-Rum: 21',
+      'And over all these virtues put on love, which binds them all together in perfect unity.',
+    sumber: 'Colossians 3:14',
   },
 
-  // Love story — kosongkan array untuk menyembunyikan section.
+  // Love story — leave empty to hide section
   story: [
-    { tahun: '2019', judul: 'Pertama Bertemu', teks: 'Placeholder: cerita singkat pertemuan pertama.' },
-    { tahun: '2022', judul: 'Menjalin Hubungan', teks: 'Placeholder: cerita singkat masa pacaran.' },
-    { tahun: '2026', judul: 'Lamaran', teks: 'Placeholder: cerita singkat lamaran.' },
+    {
+      tahun: '2019',
+      judul: 'First Encounter',
+      teks: 'Two paths crossed in God’s perfect timing, sparking a friendship anchored in faith and shared laughter.',
+    },
+    {
+      tahun: '2022',
+      judul: 'Growing in Love',
+      teks: 'Walking through seasons together, learning, growing, and discovering God’s grace in one another.',
+    },
+    {
+      tahun: '2026',
+      judul: 'The Promise',
+      teks: 'With joyous hearts and humble prayers, we decided to embark on a lifelong journey as one in Christ.',
+    },
   ],
 
   gift: {
     intro:
-      'Doa restu Anda merupakan karunia yang sangat berarti bagi kami. Namun jika Anda ingin memberikan tanda kasih, dapat melalui:',
+      'Your presence and warm prayers are the greatest blessing to our marriage. However, should you wish to honor us with a wedding gift, you may send it through:',
     accounts: [
-      { bank: 'BCA', nomor: '1234567890', atasNama: 'Nadia Putri Maharani' },
-      { bank: 'Mandiri', nomor: '0987654321', atasNama: 'Raka Aditya Pratama' },
+      { bank: 'BTN', nomor: '101700041681', atasNama: 'Dedy Erianjono Lubis' },
+      { bank: 'BCA', nomor: '8780464195', atasNama: 'Evita Sartika Hutagalung' },
     ] satisfies BankAccount[],
+    // qris: {
+    //   image: `${basePath}/cover.jpg`,
+    //   atasNama: 'Evita Hutagalung / Dedy Lubis',
+    // },
     alamat: {
-      penerima: 'Nadia Putri Maharani',
-      teks: 'Jl. Placeholder No. 45, RT 01/RW 02, Kebayoran Baru, Jakarta Selatan 12110',
+      penerima: 'Dedy - Evita',
+      teks: 'Salemba Residence Apartement. Jl. Salemba Tengah II No.10, Kec. Senen, Kota Jakarta Pusat',
     },
   },
 
   music: {
-    // Taruh file di /public/music/. Target 1–2MB (mp3 96–128kbps).
-    src: '/music/backsound.mp3',
-    judul: 'Backsound (placeholder)',
+    src: `${basePath}/music/backsound.mp3`,
+    judul: 'Wedding Song',
   },
 
-  // Teks sapaan per kategori di cover: "Dear, {label} {nama}".
-  // Kosongkan string kalau nama tamu di CSV sudah memuat gelar (mis. "Bapak Budi").
+  // Guest greeting prefix: "Dear, {label} {name}"
   sapaanLabel: {
-    formal: 'Bapak/Ibu',
+    formal: 'Mr. & Mrs.',
     informal: '',
   },
-  fallbackGuestName: 'Bapak/Ibu/Saudara/i',
+  fallbackGuestName: 'Honored Guest',
 
   footer: {
     penutup:
-      'Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu.',
-    salam: 'Kami yang berbahagia',
+      'It is our greatest joy and honor to have you celebrate and pray with us as we enter this holy covenant.',
+    salam: 'With love & gratitude,',
   },
 } as const;
 

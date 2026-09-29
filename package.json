@@ -18,7 +18,8 @@
     "db:reset": "supabase db reset",
     "db:push": "supabase db push",
     "fn:serve": "supabase functions serve submit-wish --env-file supabase/functions/.env",
-    "fn:deploy": "supabase functions deploy submit-wish --no-verify-jwt"
+    "fn:deploy": "supabase functions deploy submit-wish --no-verify-jwt",
+    "deploy": "astro build && gh-pages -d dist --dotfiles"
   },
   "dependencies": {
     "@astrojs/preact": "^6.0.5",
@@ -33,6 +34,7 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
     "@electric-sql/pglite": "^0.5.8",
+    "gh-pages": "^6.3.0",
     "supabase": "^2.117.0",
     "typescript": "^6.0.3"
   }

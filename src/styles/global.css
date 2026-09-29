@@ -4,16 +4,16 @@
 @import "@fontsource/cormorant-garamond/latin-500-italic.css";
 @import "@fontsource/great-vibes/latin-400.css";
 
-/* Palet placeholder — sesuaikan dengan desain final. */
+/* Palet elegan, hangat, & berkelas (Champagne, Warm Alabaster, & Soft Gold) */
 @theme {
-  --color-paper: #f6f1e9;
-  --color-paper-deep: #ede4d6;
-  --color-ink: #3a332b;
-  --color-ink-soft: #6b6155;
-  --color-gold: #a1804f;
-  --color-gold-soft: #d8c4a3;
-  --color-sage: #6f7d66;
-  --color-rose: #b07a74;
+  --color-paper: #FAF8F5;
+  --color-paper-deep: #F3ECE2;
+  --color-ink: #2C2825;
+  --color-ink-soft: #6E665E;
+  --color-gold: #B38E46;
+  --color-gold-soft: #DFCBB0;
+  --color-sage: #7B8877;
+  --color-rose: #C28E85;
 
   --font-serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
   --font-script: "Great Vibes", "Brush Script MT", cursive;
@@ -115,3 +115,23 @@ html.js [data-reveal].is-visible {
   opacity: 1;
   transform: none;
 }
+
+/* Custom delicate scrollbar for wishes scroll area */
+.wishes-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(179, 142, 70, 0.4) transparent;
+}
+.wishes-scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+.wishes-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.wishes-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(179, 142, 70, 0.35);
+  border-radius: 9999px;
+}
+.wishes-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(179, 142, 70, 0.6);
+}
+

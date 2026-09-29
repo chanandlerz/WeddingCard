@@ -1,15 +1,15 @@
 import type { RsvpStatus } from './api';
 
 export const STATUS_OPTIONS: Array<{ value: RsvpStatus; label: string }> = [
-  { value: 'hadir', label: 'Hadir' },
-  { value: 'tidak', label: 'Tidak Hadir' },
-  { value: 'ragu', label: 'Masih Ragu' },
+  { value: 'hadir', label: 'Yes' },
+  { value: 'tidak', label: 'No' },
+  { value: 'ragu', label: 'Uncertain' },
 ];
 
 export const STATUS_LABEL: Record<RsvpStatus, string> = {
-  hadir: 'Hadir',
-  tidak: 'Tidak Hadir',
-  ragu: 'Masih Ragu',
+  hadir: 'Attending',
+  tidak: 'Unable to Attend',
+  ragu: 'Uncertain',
 };
 
 export const STATUS_BADGE_CLASS: Record<RsvpStatus, string> = {
