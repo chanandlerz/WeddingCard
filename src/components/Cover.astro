@@ -1,6 +1,6 @@
 ---
 import { Picture } from 'astro:assets';
-import cover from '../assets/cover0310-4.jpg';
+import cover from '../assets/cover0310-10.jpg';
 import { event } from '../config/event';
 import { formatShortDate } from '../lib/time';
 
@@ -33,7 +33,7 @@ const [first, second] = event.coupleOrder.map((k) => event[k].panggilan);
     </h1>
     <p class="mt-2 font-serif text-lg tracking-widest">{formatShortDate(event.resepsi.mulai)}</p>
 
-    <div class="mx-auto mt-8 max-w-xs rounded-2xl bg-white/1 px-5 py-4 backdrop-blur-sm">
+    <div class="mx-auto mt-8 max-w-xs rounded-2xl bg-white/5 px-5 py-4 backdrop-blur-sm">
       <p class="text-sm text-white/80">Dear,</p>
       <!-- Populated via textContent by scripts/invite.ts. data-state: loading | ready -->
       <p class="mt-1 min-h-8 font-serif text-2xl font-semibold" data-guest-greeting data-state="loading">

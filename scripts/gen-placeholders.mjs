@@ -15,7 +15,7 @@ const palette = [
 ];
 
 const files = [
-  { path: 'src/assets/cover0310-4.jpg', w: 1080, h: 1920, label: 'COVER', labelY: 20 },
+  { path: 'src/assets/cover0310-10.jpg', w: 1080, h: 1920, label: 'COVER', labelY: 20 },
   { path: 'src/assets/couple/groom.jpg', w: 800, h: 1000, label: 'MEMPELAI PRIA' },
   { path: 'src/assets/couple/bride.jpg', w: 800, h: 1000, label: 'MEMPELAI WANITA' },
   ...Array.from({ length: 8 }, (_, i) => {
