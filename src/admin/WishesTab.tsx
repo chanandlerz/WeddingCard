@@ -1,10 +1,23 @@
 import { useEffect, useState } from 'preact/hooks';
 import { toast } from '../lib/toast';
+import { downloadCsv, toCsv } from './csv';
 import { shortWib } from './format';
-import { fetchSettings, sb, type SettingsRow, type WishRow } from './supabase';
+import { fetchAllWishes, fetchSettings, sb, type SettingsRow, type WishRow } from './supabase';
 
 const PAGE_SIZE = 30;
 type Filter = 'all' | 'visible' | 'hidden';
+
+const WISH_CSV_HEADER = ['id', 'nama', 'pesan', 'status_tampil', 'tamu_terkait', 'slug_tamu', 'waktu (WIB)'];
+const wishToRow = (w: WishRow) => [
+  w.id,
+  w.nama,
+  w.pesan,
+  w.is_hidden ? 'Tersembunyi' : 'Tampil',
+  w.guest ? w.guest.nama : '',
+  w.guest ? w.guest.slug : '',
+  shortWib(w.created_at),
+];
+const stamp = () => new Date().toISOString().slice(0, 10);
 
 export default function WishesTab() {
   const [settings, setSettings] = useState<SettingsRow | null>(null);
@@ -13,6 +26,7 @@ export default function WishesTab() {
   const [page, setPage] = useState(0);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [exporting, setExporting] = useState(false);
   const [error, setError] = useState('');
 
   useEffect(() => {
@@ -61,6 +75,20 @@ export default function WishesTab() {
     setTotal((t) => t - 1);
   }
 
+  async function exportCsv() {
+    try {
+      setExporting(true);
+      const allWishes = await fetchAllWishes(filter);
+      const suffix = filter === 'all' ? 'semua' : filter;
+      downloadCsv(`ucapan-${suffix}-${stamp()}.csv`, toCsv(WISH_CSV_HEADER, allWishes.map(wishToRow)));
+      toast(`Berhasil mengekspor ${allWishes.length} ucapan`);
+    } catch (e) {
+      toast(`Gagal mengekspor: ${e instanceof Error ? e.message : String(e)}`);
+    } finally {
+      setExporting(false);
+    }
+  }
+
   if (error) return <p class="text-rose-700">Gagal memuat: {error}</p>;
   const pageCount = Math.max(1, Math.ceil(total / PAGE_SIZE));
 
@@ -101,6 +129,14 @@ export default function WishesTab() {
         <span class="ml-auto text-xs text-ink-soft">{total} ucapan</span>
         <button type="button" class="btn btn-outline !min-h-8 text-xs" onClick={() => void load()}>
           Muat ulang
+        </button>
+        <button
+          type="button"
+          class="btn btn-outline !min-h-8 text-xs"
+          disabled={exporting || total === 0}
+          onClick={() => void exportCsv()}
+        >
+          {exporting ? 'Mengekspor…' : 'Ekspor CSV'}
         </button>
       </div>
 

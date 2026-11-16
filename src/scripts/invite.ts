@@ -1,6 +1,6 @@
 import { event } from '../config/event';
 import { getGuest, type AkadInfo, type Guest } from '../lib/api';
-import { formatDate, formatTimeRange } from '../lib/time';
+import { formatDate, formatTime, formatTimeRange } from '../lib/time';
 import { googleCalendarUrl, icsContent } from '../lib/calendar';
 import { copyText } from '../lib/clipboard';
 import { toast } from '../lib/toast';

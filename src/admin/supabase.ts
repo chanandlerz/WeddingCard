@@ -74,6 +74,25 @@ export async function fetchSettings(): Promise<SettingsRow> {
   return data as SettingsRow;
 }
 
+/** Ambil semua ucapan untuk ekspor CSV, per 1000 baris. */
+export async function fetchAllWishes(filter: 'all' | 'visible' | 'hidden' = 'all'): Promise<WishRow[]> {
+  const out: WishRow[] = [];
+  for (let from = 0; ; from += PAGE) {
+    let query = sb
+      .from('wishes')
+      .select('id, nama, pesan, is_hidden, created_at, guest:guests(nama, slug)')
+      .order('created_at', { ascending: false })
+      .order('id', { ascending: false })
+      .range(from, from + PAGE - 1);
+    if (filter !== 'all') query = query.eq('is_hidden', filter === 'hidden');
+    const { data, error } = await query;
+    if (error) throw error;
+    out.push(...(data as unknown as WishRow[]));
+    if (!data || data.length < PAGE) break;
+  }
+  return out;
+}
+
 export function siteUrl(): string {
   return (import.meta.env.PUBLIC_SITE_URL || location.origin).replace(/\/+$/, '');
 }
